@@ -5,17 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using UniqueMvc.Data;
 using UniqueMvc.Models;
 
 namespace UniqueMvc.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly AuthDbContext authDbContext;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
-        public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AuthDbContext authDbContext)
         {
+            this.authDbContext = authDbContext;
             this.signInManager = signInManager;
             this.userManager = userManager;
         }
@@ -58,14 +61,15 @@ namespace UniqueMvc.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> Register(string userName, string password, string name, string address)
+        public async Task<IActionResult> Register(string userName, string password, string name, string homeAddress)
         {
             var user = new ApplicationUser
             {
                 Name = name,
                 Access = "Student",
-                HomeAddress = address,
+                HomeAddress = homeAddress,
                 UserName = userName,
             };
 
@@ -75,16 +79,84 @@ namespace UniqueMvc.Controllers
             if (result.Succeeded)
             {
                 user = await userManager.FindByNameAsync(user.UserName);
+
+                var prelim = InitializeGrades("Prelim");
+                var midterm = InitializeGrades("Midterm");
+                var preFinal = InitializeGrades("Prefinal");
+                var final = InitializeGrades("Final");
+                await authDbContext.AddRangeAsync(prelim, midterm, preFinal, final);
+                await authDbContext.SaveChangesAsync();
+
+                var grade = new Grade
+                {
+                    AppUserID = user.Id,
+                    PrelimID = prelim.ID,
+                    MidtermID = midterm.ID,
+                    PrefinalID = preFinal.ID,
+                    FinalID = final.ID
+                };
+
+                await  authDbContext.AddAsync(grade);
+                await authDbContext.SaveChangesAsync();
             }
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Admin", new { area = "" } );
         }
 
-
-        [Authorize(Roles = "Student")]
-        public IActionResult Secret()
+        public TermGrade InitializeGrades(string term)
         {
-            return View();
+            var termGrade = new TermGrade
+            {
+                Term = term,
+                Grade = 0
+            };
+            string[] types = { "Quiz1", "Quiz2", "Quiz3", "Assignment1", "Assignment2", "Assignment3" };
+
+            var item = new QuizOrAssignment();
+            for (int i = 0; i < types.Length; i++)
+            {
+                item = new QuizOrAssignment
+                {
+                    Grade = 0,
+                    Type = types[i]
+                };
+
+                authDbContext.Add(item);
+                authDbContext.SaveChanges();
+
+                switch (i)
+                {
+                    case 0:
+                        termGrade.Quiz1ID = item.ID;
+                        break;
+                    case 1:
+                        termGrade.Quiz2ID = item.ID;
+                        break;
+                    case 2:
+                        termGrade.Quiz3ID = item.ID;
+                        break;
+                    case 3:
+                        termGrade.Assignment1ID = item.ID;
+                        break;
+                    case 4:
+                        termGrade.Assignment2ID = item.ID;
+                        break;
+                    case 5:
+                        termGrade.Assignment3ID = item.ID;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+            return termGrade;
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
     }
 }

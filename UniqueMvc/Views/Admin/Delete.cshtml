@@ -1,0 +1,9 @@
+﻿@model UniqueMvc.Models.ApplicationUser
+
+
+<h3>Confirm Delete?</h3>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="button-submit" />
+    <a asp-action="Index" class="back-to-list">Back to List</a>
+</form>

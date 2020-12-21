@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>l</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +12,8 @@
     <Compile Remove="Migrations\20201209115740_initial.Designer.cs" />
     <Compile Remove="Migrations\20201209130531_recover.cs" />
     <Compile Remove="Migrations\20201209130531_recover.Designer.cs" />
+    <Compile Remove="Migrations\20201221063235_initGradeds.cs" />
+    <Compile Remove="Migrations\20201221063235_initGradeds.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

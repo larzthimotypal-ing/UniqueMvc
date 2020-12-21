@@ -1,0 +1,79 @@
+﻿@model UniqueMvc.Models.Grade
+<h1 class="page-title">Grades Page</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Term</th>
+            <th>Quiz1</th>
+            <th>Quiz2</th>
+            <th>Quiz3</th>
+            <th>Assignment1</th>
+            <th>Assignment2</th>
+            <th>Assignment3</th>
+            <th>Grades</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Prelim</td>
+            <td>@Model.Prelim.Quiz1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prelim.Quiz1.ID">Edit</a></td>
+            <td>@Model.Prelim.Quiz2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prelim.Quiz2.ID">Edit</a></td>
+            <td>@Model.Prelim.Quiz3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prelim.Quiz3.ID">Edit</a></td>
+            <td>@Model.Prelim.Assignment1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prelim.Assignment1.ID">Edit</a></td>
+            <td>@Model.Prelim.Assignment2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prelim.Assignment2.ID">Edit</a></td>
+            <td>@Model.Prelim.Assignment3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prelim.Assignment3.ID">Edit</a></td>
+            <td>@Model.Prelim.Grade</td>
+        </tr>
+        <tr>
+            <td>Midterm</td>
+            <td>@Model.Midterm.Quiz1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Midterm.Quiz1.ID">Edit</a></td>
+            <td>@Model.Midterm.Quiz2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Midterm.Quiz2.ID">Edit</a></td>
+            <td>@Model.Midterm.Quiz3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Midterm.Quiz3.ID">Edit</a></td>
+            <td>@Model.Midterm.Assignment1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Midterm.Assignment1.ID">Edit</a></td>
+            <td>@Model.Midterm.Assignment2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Midterm.Assignment2.ID">Edit</a></td>
+            <td>@Model.Midterm.Assignment3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Midterm.Assignment3.ID">Edit</a></td>
+            <td>@Model.Midterm.Grade</td>
+        </tr>
+        <tr>
+            <td>Prefinal</td>
+            <td>@Model.Prefinal.Quiz1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prefinal.Quiz1.ID">Edit</a></td>
+            <td>@Model.Prefinal.Quiz2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prefinal.Quiz2.ID">Edit</a></td>
+            <td>@Model.Prefinal.Quiz3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prefinal.Quiz3.ID">Edit</a></td>
+            <td>@Model.Prefinal.Assignment1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prefinal.Assignment1.ID">Edit</a></td>
+            <td>@Model.Prefinal.Assignment2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prefinal.Assignment2.ID">Edit</a></td>
+            <td>@Model.Prefinal.Assignment3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Prefinal.Assignment3.ID">Edit</a></td>
+            <td>@Model.Prefinal.Grade</td>
+        </tr>
+        <tr>
+            <td>Final</td>
+            <td>@Model.Final.Quiz1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Final.Quiz1.ID">Edit</a></td>
+            <td>@Model.Final.Quiz2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Final.Quiz2.ID">Edit</a></td>
+            <td>@Model.Final.Quiz3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Final.Quiz3.ID">Edit</a></td>
+            <td>@Model.Final.Assignment1.Grade <a asp-action="AddGrade" asp-route-id="@Model.Final.Assignment1.ID">Edit</a></td>
+            <td>@Model.Final.Assignment2.Grade <a asp-action="AddGrade" asp-route-id="@Model.Final.Assignment2.ID">Edit</a></td>
+            <td>@Model.Final.Assignment3.Grade <a asp-action="AddGrade" asp-route-id="@Model.Final.Assignment3.ID">Edit</a></td>
+            <td>@Model.Final.Grade</td>
+        </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th>Prelim Grade</th>
+            <th>Midterm Grade</th>
+            <th>Prefinal Grade</th>
+            <th>Final Grade</th>
+            <th>Subject Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Prelim.Grade</td>
+            <td>@Model.Midterm.Grade</td>
+            <td>@Model.Prefinal.Grade</td>
+            <td>@Model.Final.Grade</td>
+            <td>@Model.SubjectGrade</td>
+        </tr>
+    </tbody>
+</table>

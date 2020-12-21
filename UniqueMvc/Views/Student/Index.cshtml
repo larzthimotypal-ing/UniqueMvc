@@ -1,1 +1,11 @@
-﻿<h1>Student Page</h1>
+﻿@using Microsoft.AspNetCore.Identity;
+
+@inject UserManager<ApplicationUser> UserManager
+
+
+<h1>Student Page</h1>
+
+
+<a asp-controller="Student" asp-action="Details" asp-route-id="@UserManager.GetUserId(User)">
+    Details
+</a>

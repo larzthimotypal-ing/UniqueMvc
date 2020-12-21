@@ -1,0 +1,11 @@
+﻿@model UniqueMvc.Models.QuizOrAssignment
+
+<h1 class="page-title">Add Grade</h1>
+
+<form asp-action="AddGrade" method="post">
+    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="Type" />
+    <label asp-for="Grade"></label>
+    <input asp-for="Grade" id="grade" type="number" name="grade" value="" />
+    <button type="submit">Submit</button>
+</form>

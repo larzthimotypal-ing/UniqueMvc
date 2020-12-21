@@ -1,0 +1,15 @@
+﻿@model UniqueMvc.Models.ApplicationUser
+
+<h1 class="page-title">Edit</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="userName" value="" asp-for="UserName" />
+    <label asp-for="Name"></label>
+    <input asp-for="Name" type="text" name="Name" value="" />
+    <label asp-for="HomeAddress">Address</label>
+
+    <textarea asp-for="HomeAddress"></textarea>
+
+    <button type="submit" value="Save">Save</button>
+</form>
+

@@ -1,0 +1,102 @@
+﻿@model UniqueMvc.Models.Grade
+
+
+<div class="container">
+    <h1 class="page-title">Details</h1>
+    <div class="student-details">
+        <div class="student-details--container">
+            <p class="student-details--label">Name:</p>
+            <p class="student-details--info">@Model.ApplicationUser.Name</p>
+        </div>
+        <div class="student-details--container">
+            <p class="student-details--label">Address:</p>
+            <p class="student-details--info">@Model.ApplicationUser.HomeAddress</p>
+        </div>
+    </div>
+
+    <h1 class="page-title">Grades</h1>
+    <div class="grades--container">
+        <h3 class="grades--subheadings">Hello @Model.ApplicationUser.Name</h3>
+        <h3 class="grades--subheadings">Here's the progress of your grades!</h3>
+        <div class="grade-table--container">
+            <h3 class="grades--subheadings">Grades Per Term</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Quiz1</th>
+                        <th>Quiz2</th>
+                        <th>Quiz3</th>
+                        <th>Assignment1</th>
+                        <th>Assignment2</th>
+                        <th>Assignment3</th>
+                        <th>Grades</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Prelim</td>
+                        <td>@Model.Prelim.Quiz1.Grade </td>
+                        <td>@Model.Prelim.Quiz2.Grade </td>
+                        <td>@Model.Prelim.Quiz3.Grade </td>
+                        <td>@Model.Prelim.Assignment1.Grade </td>
+                        <td>@Model.Prelim.Assignment2.Grade </td>
+                        <td>@Model.Prelim.Assignment3.Grade </td>
+                        <td>@Model.Prelim.Grade</td>
+                    </tr>
+                    <tr>
+                        <td>Midterm</td>
+                        <td>@Model.Midterm.Quiz1.Grade </td>
+                        <td>@Model.Midterm.Quiz2.Grade </td>
+                        <td>@Model.Midterm.Quiz3.Grade </td>
+                        <td>@Model.Midterm.Assignment1.Grade </td>
+                        <td>@Model.Midterm.Assignment2.Grade </td>
+                        <td>@Model.Midterm.Assignment3.Grade </td>
+                        <td>@Model.Midterm.Grade</td>
+                    </tr>
+                    <tr>
+                        <td>Prefinal</td>
+                        <td>@Model.Prefinal.Quiz1.Grade </td>
+                        <td>@Model.Prefinal.Quiz2.Grade </td>
+                        <td>@Model.Prefinal.Quiz3.Grade </td>
+                        <td>@Model.Prefinal.Assignment1.Grade </td>
+                        <td>@Model.Prefinal.Assignment2.Grade </td>
+                        <td>@Model.Prefinal.Assignment3.Grade </td>
+                        <td>@Model.Prefinal.Grade</td>
+                    </tr>
+                    <tr>
+                        <td>Final</td>
+                        <td>@Model.Final.Quiz1.Grade </td>
+                        <td>@Model.Final.Quiz2.Grade </td>
+                        <td>@Model.Final.Quiz3.Grade </td>
+                        <td>@Model.Final.Assignment1.Grade </td>
+                        <td>@Model.Final.Assignment2.Grade </td>
+                        <td>@Model.Final.Assignment3.Grade </td>
+                        <td>@Model.Final.Grade</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Prelim Grade</th>
+                        <th>Midterm Grade</th>
+                        <th>Prefinal Grade</th>
+                        <th>Final Grade</th>
+                        <th>Subject Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Prelim.Grade</td>
+                        <td>@Model.Midterm.Grade</td>
+                        <td>@Model.Prefinal.Grade</td>
+                        <td>@Model.Final.Grade</td>
+                        <td>@Model.SubjectGrade</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
