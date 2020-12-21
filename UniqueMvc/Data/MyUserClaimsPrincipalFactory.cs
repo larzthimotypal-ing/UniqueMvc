@@ -19,6 +19,7 @@ namespace UniqueMvc.Data
         {
         }
 
+
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)
         {
             var identity = await base.GenerateClaimsAsync(user);

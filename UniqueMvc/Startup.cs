@@ -41,21 +41,20 @@ namespace UniqueMvc
 
             })
                 .AddEntityFrameworkStores<AuthDbContext>()
-                .AddDefaultTokenProviders()
                 .AddClaimsPrincipalFactory<MyUserClaimsPrincipalFactory>();
 
             services.ConfigureApplicationCookie(config =>
             {
                 config.Cookie.Name = "Identity.Cookie";
-                config.LoginPath = "/Home/Login";
+                config.LoginPath = "/Auth/Login";
             });
 
             services.AddAuthorization(config =>
             {
                 var defaultAuthBuilder = new AuthorizationPolicyBuilder();
                 var defaultAuthPolicy = defaultAuthBuilder
-                .RequireAuthenticatedUser()
-                .RequireClaim(ClaimTypes.Role)
+                .RequireAuthenticatedUser() //kailangan logged-in yung user
+                .RequireClaim(ClaimTypes.Role) // kailngan meron kang role
                 .Build();
 
                 config.DefaultPolicy = defaultAuthPolicy;

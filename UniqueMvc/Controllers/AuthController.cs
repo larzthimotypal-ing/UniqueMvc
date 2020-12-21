@@ -31,13 +31,13 @@ namespace UniqueMvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string userName, string password)
         {
-            var user = await userManager.FindByNameAsync(userName);
+            var user = await userManager.FindByNameAsync(userName); //name = username
 
             if (user != null)
             {
                 
                 //sign in
-                var signInResult = await signInManager.PasswordSignInAsync(user.UserName, password, false, false);
+                var signInResult = await signInManager.PasswordSignInAsync(user.UserName, password, false, false); //persistence para siya sa remember me //lockOut failed log-ins
 
                 if (signInResult.Succeeded)
                 {
@@ -73,7 +73,6 @@ namespace UniqueMvc.Controllers
                 UserName = userName,
             };
 
-            var pw = password;
             var result = await userManager.CreateAsync(user, password);
             
             if (result.Succeeded)
@@ -103,6 +102,7 @@ namespace UniqueMvc.Controllers
             return RedirectToAction("Index","Admin", new { area = "" } );
         }
 
+        //database relationships
         public TermGrade InitializeGrades(string term)
         {
             var termGrade = new TermGrade

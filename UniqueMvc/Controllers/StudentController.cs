@@ -45,6 +45,8 @@ namespace UniqueMvc.Controllers
             }
             grade.ApplicationUser = student;
 
+            //instantiating objects
+            //setting up relationships
             grade.Prelim = await authDbContext.TermGrades.FindAsync(grade.PrelimID);
             grade.Prelim.Quiz1 = await authDbContext.QuizOrAssignments.FindAsync(grade.Prelim.Quiz1ID);
             grade.Prelim.Quiz2 = await authDbContext.QuizOrAssignments.FindAsync(grade.Prelim.Quiz2ID);
